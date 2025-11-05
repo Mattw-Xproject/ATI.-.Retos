@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <title>Mateo González</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type=image/x-icon href="http://www.ciens.ucv.ve/portalasig2/favicon.ico">
+    <link rel="shortcut icon" href="http://www.ciens.ucv.ve/portalasig2/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/5d72166fb5.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&family=Mukta:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Satisfy&display=swap');
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            background:url(https://cdn.pixabay.com/photo/2015/12/01/15/43/black-1072366_1280.jpg);
+            background-position:center;
+            background-size:cover;
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+        }
+        .container{
+            min-height: 100vh;
+            max-height:fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+        }
+        .container-card{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0; 
+            width:900px;
+            height:350px;
+            border-radius: 0;
+            box-shadow: 0 4px 4px rgba(0,0,0,0.60);
+        }
+        .left-container-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width:300px;
+            height:350px;
+            border-radius: 0;
+            margin: 0;
+            overflow: hidden; 
+            box-shadow: none !important;
+        }
+        .left-container-card img{
+            width:300px;
+            height:350px;
+            border-radius: 0;
+            border-top-left-radius: 40px; /* solo la esquina superior izquierda redondeada */
+            display:block;
+            margin: 0;
+            object-fit: cover;
+             
+        }
+        .right-container-card{
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 4px rgba(17,16,15,0.65); /* menos difuminado, sombra más definida */
+            width:600px;
+            height:350px;
+            margin:0 0 0 2px; 
+            border-radius: 0;
+            border: 1.8px solid #000; 
+        }
+        .right-container-card h1{
+            font-family: 'Satisfy', cursive;
+            font-size:20px;
+            padding-top: 20px;
+        }
+        .right-container-card p{
+            font-family: 'Fira Sans', sans-serif;
+            text-align:justify;
+            margin:15px;
+            padding:0px 15px;
+            font-size:12px;
+        }
+        .right-container-card li{
+            font-family: 'Fira Sans', sans-serif;
+            font-size: 12px;
+            
+        }
+
+        /* estilo para la descripción en cursiva debajo del h1 */
+        .right-container-card .descripcion{
+            font-style: italic;
+            font-size:16px;
+            color:#333;
+            text-align:justify;
+            margin:8px 16px;
+            line-height:1.4;
+        }
+
+    /* estilos actualizados para el enlace de email */
+    .mail a{
+        text-decoration: none;
+        color: orange;        /* color por defecto */
+        font-weight: 600;
+    }
+    .mail a:active,
+    .mail a:focus{
+        color: red;           /* color al hacer clic / activo */
+    }
+    .mail{
+        color: #000;
+        text-align: center;
+
+        font-family: Verdana,Geneva,Tahoma,sans-serif;
+    }
+    .mail p{
+            font-family: 'Fira Sans', sans-serif;
+            text-align:justify;
+            
+            font-size:12px;
+    }
+    
+
+    h1 {
+        color: tomato;
+    }
+    
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="container-card">
+            <div class="left-container-card">
+                <img src="29900089.jpg">
+            </div>
+            <div class="right-container-card">
+                <h1>Mateo González (Mattxx)</h1>
+                <p class="descripcion">Soy estudiante de la UCV. Estudio medio tiempo diseño y desarrollo web, especializándome en tecnologías como Django y Laravel (PHP). Además soy técnico en software —con experiencia en PC, smartphones, tablets y laptops— y manejo tareas de mantenimiento y soporte. En mis tiempos libres escribo poesía libre y exploro proyectos personales de diseño.</p>
+                <ul>
+                    <li>Mi color favorito es: Azul o naranja</li>
+                    <li>Mi libro favorito es: The Hunger Games</li>
+                    <li>Estilo de música preferida es: Gospel, rap, rock alternativo y Future Bass</li>
+                    <li>Mis Videojuegos favoritos son: Super Mario 64</li>
+                    <li>Lenguajes aprendidos: <strong>C/C++, Java, Python, Php</strong></li>
+                </ul>
+                <div class="mail">
+                    <p>Si necesitan comunicarse conmigo me pueden escribir a:
+                    <a href="mailto:dannygonzalez.exe@gmail.com">dannygonzalez.exe@gmail.com</a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
