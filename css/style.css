@@ -2,18 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&family=Mukta:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Satisfy&display=swap');
 :root{
     --color-text: #616161;
-    --card1-img: url('/29900089/29900089.jpg');
-    --card2-img: url('/dummy1/dummy.jpg');
-    --card3-img: url('/dummy2/dummy.jpg');
-    --card4-img: url('/dummy3/dummy.jpg');
-    --card5-img: url('/dummy4/dummy.jpg');
-    --card6-img: url('/dummy5/dummy.jpg');
-    --card7-img: url('/dummy6/dummy.jpg');
-    --card8-img: url('/dummy1/dummy.jpg');
-    --card9-img: url('/dummy2/dummy.jpg');
-    --card10-img: url('/dummy3/dummy.jpg');
-    --card11-img: url('/dummy4/dummy.jpg');
-    --card12-img: url('/dummy5/dummy.jpg');
+    --card1-img: url('../29900089/29900089.jpg');
+    --card2-img: url('../dummy1/dummy.jpg');
+    --card3-img: url('../dummy2/dummy.jpg');
+    --card4-img: url('../dummy3/dummy.jpg');
+    --card5-img: url('../dummy4/dummy.jpg');
+    --card6-img: url('../dummy5/dummy.jpg');
+    --card7-img: url('../dummy6/dummy.jpg');
+    --card8-img: url('../dummy1/dummy.jpg');
+    --card9-img: url('../dummy2/dummy.jpg');
+    --card10-img: url('../dummy3/dummy.jpg');
+    --card11-img: url('../dummy4/dummy.jpg');
+    --card12-img: url('../dummy5/dummy.jpg');
 }
 
 *{ box-sizing: border-box; margin:0; padding:0; }
