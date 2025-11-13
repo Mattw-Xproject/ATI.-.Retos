@@ -346,7 +346,7 @@ footer{
     display: flex; 
     margin-bottom: 8px; /* Espacio entre las filas */
     
-    padding-bottom: 2px; /* Mantiene un poco de espacio en la parte inferior */
+    padding-bottom: 2px; 
 }
 
 /* Estilo para la columna de la pregunta */
