@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400&family=Mukta:wght@300&family=Nunito+Sans:opsz,wght@6..12,300&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 :root{
     --color-text: #616161;
     --card1-img: url('../29900089/29900089.jpg');
@@ -100,6 +101,12 @@ footer{
     grid-template-columns: repeat(4, 1fr);
     gap:24px;
     box-sizing:border-box;
+}
+
+.card-wrap{
+    cursor:pointer;
+    transition: transform .18s ease;
+    width: 210px;
 }
 
 .card-wrap:hover{ transform: translateY(-6px) scale(1.01); }
@@ -327,3 +334,31 @@ footer{
         color: tomato;
     }
 
+
+    
+.two-column-list ul {
+    list-style: none; 
+    padding: 0; 
+}
+
+
+.two-column-list li {
+    display: flex; 
+    margin-bottom: 8px; /* Espacio entre las filas */
+    
+    padding-bottom: 2px; /* Mantiene un poco de espacio en la parte inferior */
+}
+
+/* Estilo para la columna de la pregunta */
+.two-column-list .question {
+    font-family: Ubuntu, sans-serif;
+    font-weight: bold; 
+    flex: 0 0 40%; /* Ocupa el 40% del ancho y no se encoge */
+    padding-right: 40px; /* Espacio entre las dos "columnas" */
+    box-sizing: border-box; /* Asegura que el padding se incluya en el 40% */
+}
+
+/* Estilo para la columna de la respuesta */
+.two-column-list .answer {
+    flex: 1; /* Ocupa el espacio restante */
+}
