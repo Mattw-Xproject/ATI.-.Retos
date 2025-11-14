@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 :root{
     --color-text: #616161;
-    --card1-img: url('../29900089/29900089.jpg');
+    --card1-img: url('../29900089/29900089Grande.jpg');
     --card2-img: url('../dummy1/dummy.jpg');
     --card3-img: url('../dummy2/dummy.jpg');
     --card4-img: url('../dummy3/dummy.jpg');
@@ -16,7 +16,11 @@
     --card11-img: url('../dummy4/dummy.jpg');
     --card12-img: url('../dummy5/dummy.jpg');
 }
-
+/* Establecemos 16px como base para desktop (1rem = 16px) */
+/* En los media queries para móvil, aumentaremos el width */
+html {
+    font-size: 16px; 
+}
 *{ box-sizing: border-box; margin:0; padding:0; }
 body{
     font-family: 'Roboto', sans-serif;
@@ -55,8 +59,9 @@ header nav{ width:100%; max-width:1200px; margin:0 auto; }
 .nav-list li.center{ flex:1 1 auto; justify-content:center; display:flex; }
 .nav-list li.right{ flex:0 0 auto; }
 
-.header-left h1{ font-size:28px; margin:0; color:#fff; font-weight:700; }
-.greeting{ font-size:16px; color:rgba(255,255,255,0.95); padding:0 24px; }
+/* PUNTO 4: Fuentes en REM */
+.header-left h1{ font-size: 1.75rem; /* 28px */ margin:0; color:#fff; font-weight:700; }
+.greeting{ font-size: 1rem; /* 16px */ color:rgba(255,255,255,0.95); padding:0 24px; }
 .search{ display:flex; align-items:center; gap:6px; }
 .search input{
     height:38px;
@@ -73,7 +78,7 @@ header nav{ width:100%; max-width:1200px; margin:0 auto; }
     border:none;
     color:#fff;
     cursor:pointer;
-    font-size:16px;
+    font-size:1rem;
     padding:6px;
     display:inline-flex;
     align-items:center;
@@ -98,15 +103,24 @@ footer{
     width:100%;
     max-width:1200px;
     display:grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* PUNTO 1: Definimos 1 columna para móvil (Mobile-first) */
+    grid-template-columns: 1fr;
     gap:24px;
     box-sizing:border-box;
+    justify-items: center; /* Centramos las tarjetas */
 }
 
 .card-wrap{
     cursor:pointer;
     transition: transform .18s ease;
-    width: 210px;
+    width: 180px;
+    height: 220px;
+}
+
+@media (max-width:400px){
+    .card-wrap{
+    width: 170px;
+    }
 }
 
 .card-wrap:hover{ transform: translateY(-6px) scale(1.01); }
@@ -147,7 +161,7 @@ footer{
     transition: transform .18s ease, background .3s ease;
     border:4px solid #707070;
     border-radius:0;
-    height:360px;
+    height:240px;
     display:flex;
     flex-direction:column;
 }
@@ -196,7 +210,8 @@ footer{
     background:transparent;
 }
 .card-title{
-    font-size:13px;
+    /* PUNTO 4: Fuente en REM */
+    font-size: 0.8125rem; /* 13px */
     text-transform:uppercase;
     margin:0;
     color:#fff;
@@ -225,87 +240,92 @@ footer{
 
 /* Perfil.html specific styles */
 .container{
-            min-height: 100vh;
-            max-height:fit-content;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width:100%;
-        }
-        .container-card{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 0; 
-            width:900px;
-            height:350px;
-            border-radius: 0;
-            box-shadow: 0 4px 4px rgba(0,0,0,0.60);
-        }
-        .left-container-card{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width:300px;
-            height:350px;
-            border-radius: 0;
-            margin: 0;
-            overflow: hidden; 
-            box-shadow: none !important;
-        }
-        .left-container-card img{
-            width:300px;
-            height:350px;
-            border-radius: 0;
-            border-top-left-radius: 40px; /* solo la esquina superior izquierda redondeada */
-            display:block;
-            margin: 0;
-            object-fit: cover;
-             
-        }
-        .right-container-card{
-            display:flex;
-            flex-direction:column;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-            box-shadow: 0 4px 4px rgba(17,16,15,0.65); /* menos difuminado, sombra más definida */
-            width:600px;
-            height:350px;
-            margin:0 0 0 2px; 
-            border-radius: 0;
-            border: 1.8px solid #000; 
-        }
-        .right-container-card h1{
-            font-family: 'Satisfy', cursive;
-            font-size:20px;
-            padding-top: 20px;
-        }
-        .right-container-card p{
-            font-family: 'Fira Sans', sans-serif;
-            text-align:justify;
-            margin:15px;
-            padding:0px 15px;
-            font-size:12px;
-        }
-        .right-container-card li{
-            font-family: 'Fira Sans', sans-serif;
-            font-size: 12px;
-            
-        }
+    min-height: 100vh;
+    max-height:fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+    .container-card{
+        display: flex;
+        /* PUNTO 1: Estilo base para móvil (apilado) */
+        flex-direction: column;
+        align-items: center;
+        gap: 0; 
+        width: 90vw; /* Ancho fluido para móvil */
+        max-width: 450px; /* Máximo para móviles */
+        height: auto; /* Altura automática */
+        border-top-left-radius: 40px; /* Redondeamos la esquina top-left */
+        box-shadow: 0 4px 4px rgba(0,0,0,0.60);
+        overflow: hidden; /* Para que el borde redondeado afecte a los hijos */
+    }
+    .left-container-card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* Ejercicio 6: Ancho completo en móvil */
+        width: 100%;
+        height: 300px;
+        margin: 0;
+        overflow: hidden; 
+        box-shadow: none !important;
 
-        /* estilo para la descripción en cursiva debajo del h1 */
-        .right-container-card .descripcion{
-            font-style: italic;
-            font-size:16px;
-            color:#333;
-            text-align:justify;
-            margin:8px 16px;
-            line-height:1.4;
-        }
+        /* Ejercicio 7 y 8: Imagen de perfil como fondo CSS */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Por defecto (móvil) usamos la imagen pequeña */
+        background-image: url('../29900089/29900089Pequena.jpg'); 
+    }
+    /* La regla .left-container-card img ya no es necesaria */
+    .right-container-card{
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        box-shadow: none; /* Sombra movida al .container-card */
+        /* Ejercicio 6: Ancho completo en móvil */
+        width: 100%;
+        height: auto;
+        margin: 0; 
+        border-radius: 0;
+        border: none; /* Borde ya no es necesario */
+        padding: 20px; /* Espaciado interno */
+    }
+    .right-container-card h1{
+        font-family: 'Satisfy', cursive;
+        /* Ejercicio 9: Fuente en REM mas flexibles */
+        font-size: 1.5rem; /* 24px (aumentado para móvil) */
+        padding-top: 20px;
+        color: tomato; /* Consolidamos el H1 */
+    }
+    .right-container-card p{
+        font-family: 'Fira Sans', sans-serif;
+        text-align:justify;
+        margin:15px;
+        padding:0px 15px;
+        /* PUNTO 4: Fuente en REM */
+        font-size: 0.875rem; /* 14px */
+    }
+    .right-container-card li{
+        font-family: 'Fira Sans', sans-serif;
+        /* PUNTO 4: Fuente en REM */
+        font-size: 0.875rem; /* 14px */
+    }
 
+    .right-container-card .descripcion{
+        font-style: italic;
+        /* PUNTO 4: Fuente en REM */
+        font-size: 1rem; /* 16px */
+        color:#333;
+        text-align:justify;
+        margin:8px 16px;
+        line-height:1.4;
+    }
     /* estilos actualizados para el enlace de email */
     .mail a{
         text-decoration: none;
@@ -323,42 +343,221 @@ footer{
         font-family: Verdana,Geneva,Tahoma,sans-serif;
     }
     .mail p{
-            font-family: 'Fira Sans', sans-serif;
-            text-align:justify;
-            
-            font-size:12px;
-    }
-    
-
-    h1 {
-        color: tomato;
-    }
-
-
+    font-family: 'Fira Sans', sans-serif;
+    text-align:justify;
+    /* PUNTO 4: Fuente en REM */
+    font-size: 0.875rem; /* 14px */
+}
     
 .two-column-list ul {
     list-style: none; 
     padding: 0; 
 }
 
-
 .two-column-list li {
     display: flex; 
-    margin-bottom: 8px; /* Espacio entre las filas */
-    
-    padding-bottom: 2px; 
+    flex-direction: column; /* Apilamos P/R en móviles */
+    margin-bottom: 8px; 
+    padding-bottom: 2px;
 }
 
-/* Estilo para la columna de la pregunta */
 .two-column-list .question {
     font-family: Ubuntu, sans-serif;
     font-weight: bold; 
-    flex: 0 0 40%; /* Ocupa el 40% del ancho y no se encoge */
-    padding-right: 40px; /* Espacio entre las dos "columnas" */
-    box-sizing: border-box; /* Asegura que el padding se incluya en el 40% */
+    flex: 1;
+    padding-right: 0; /* Sin padding lateral en móvil */
 }
 
-/* Estilo para la columna de la respuesta */
 .two-column-list .answer {
-    flex: 1; /* Ocupa el espacio restante */
+    flex: 1; 
+    padding-left: 10px; /* Pequeña indentación para la respuesta */
+}
+
+
+
+/* Ejercicio 6: MEDIA QUERIES PARA RESPONSIVE DESIGN */
+
+
+
+/* 320px — 480px: Dispositivos móviles (Estos son los estilos base) */
+
+
+@media (max-width: 480px) {
+    /* Ejercicio 9: Fuente más grande para legibilidad en móviles */
+    html {
+        font-size: 17px; /* 1rem = 17px en este rango */
+    }
+
+    /* Ajustes específicos para nav en pantallas muy pequeñas */
+    .nav-list {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .nav-list li.left,
+    .nav-list li.right,
+    .nav-list li.center {
+        width: 100%;
+        justify-content: center;
+    }
+    .nav-list li.left { order: 1; }
+    .nav-list li.center { order: 2; }
+    .nav-list li.right { order: 3; }
+    .greeting { padding: 0; }
+    .search input { min-width: 120px; width: 60%; max-width: 280px; }
+
+}
+
+/* -------------------------------------------------------- */
+/* 481px — 768px: iPads, tablets */
+/* -------------------------------------------------------- */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    /* Ejercicio 9: Mantenemos la fuente grande para tablets */
+    html {
+        font-size: 17px; /* 1rem = 17px */
+    }
+
+    /* Ejercicio 6: 2 columnas para las tarjetas */
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Mantenemos el layout apilado para perfil.html en tablets */
+    .container-card {
+        max-width: 600px;
+    }
+    
+}
+
+/* -------------------------------------------------------- */
+/* 769px — 1024px: pantallas pequeñas, ordenadores portátiles */
+/* -------------------------------------------------------- */
+
+@media (min-width: 769px) and (max-width: 936px) {
+    /* Ejercicio 9: Fuente base ligeramente aumentada para portátiles */
+    .container-card{
+        height: 400px;
+    }
+    .left-container-card{
+        height: 400px;
+        
+    }
+    .right-container-card{
+        height: 400px;
+    }
+    .right-container-card h1{
+        font-size: 1.4rem; /* 24px (aumentado para móvil) */
+        
+    }
+    .right-container-card p{
+        font-size: 0.9rem;
+    }
+    .right-container-card li{
+        font-size: 0.9rem; 
+    }
+
+    .right-container-card .descripcion{
+        
+        font-size: 0.8rem; 
+        
+    }
+}
+
+@media (min-width: 769px) {
+    /* Ejercicio 7: Volvemos a la fuente base de desktop */
+    html {
+        font-size: 16px; /* 1rem = 16px */
+    }
+
+    /* Ejercicio 6: 3 columnas para las tarjetas */
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .container-card {
+        flex-direction: row; 
+        
+        /* * CAMBIO 1: 
+         * Hacemos la tarjeta más ancha. 
+         * Ocupará el 90% del contenedor, con un máximo de 1100px 
+         * (antes era 900px fijos).
+        */
+        width: 90%;
+        max-width: 1100px; 
+        
+        height: 450px; /* Mantenemos la altura fija */
+        border-radius: 0; 
+    }
+
+    .left-container-card {
+        background-image: url('../29900089/29900089Grande.jpg');
+        
+        /*Usamos 'flex' en lugar de 'width'.*/
+        flex: 0 0 35%; 
+        
+        height: 450px;
+        border-top-left-radius: 40px; 
+        border-top-right-radius: 0; 
+    }
+
+    .right-container-card {
+        /* Hacemos que el texto ocupe el espacio restante (el 60%).
+         * 'flex: 1' se expandirá para llenar el espacio.
+        */
+        flex: 1; 
+        
+        height: 450px;
+        margin: 0 0 0 2px;
+        border: 1.8px solid #000;
+        box-shadow: 0 4px 4px rgba(17, 16, 15, 0.65);
+        padding: 0; 
+    }
+
+    .right-container-card .two-column-list {
+        padding-left: 20px; 
+    }
+
+    /* Restauramos layout de lista P/R */
+    .two-column-list li {
+        flex-direction: row; /* Lado a lado */
+    }
+    .two-column-list .question {
+        flex: 0 0 40%;
+        padding-right: 40px;
+    }
+    .two-column-list .answer {
+        padding-left: 0;
+    }
+
+    /* Restauramos el nav original */
+    .nav-list {
+        flex-direction: row;
+        align-items: center;
+    }
+    .nav-list li.left { order: 0; }
+    .nav-list li.center { order: 0; }
+    .nav-list li.right { order: 0; }
+}
+
+/* -------------------------------------------------------- */
+/* 1025px — 1200px: pantallas grandes, ordenadores de escritorio */
+/* -------------------------------------------------------- */
+
+@media (min-width: 1025px) {
+    /* Ejercicio 6: 4 columnas para las tarjetas */
+    .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .left-container-card {
+        background-image: url('../29900089/29900089Grande.jpg');
+        
+        /*Usamos 'flex' en lugar de 'width'.*/
+        flex: 0 0 30%; 
+        
+        height: 450px;
+        border-top-left-radius: 40px; 
+        border-top-right-radius: 0; 
+    }
 }
