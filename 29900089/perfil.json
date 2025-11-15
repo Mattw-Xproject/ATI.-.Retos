@@ -1,0 +1,14 @@
+const perfil = {	
+	"nombre":"Mateo González (Mattxx)",
+	"descripcion":"Soy estudiante de la UCV. Estudio medio tiempo diseño y desarrollo web, especializándome en tecnologías como Django y Laravel (PHP). Además soy técnico en software —con experiencia en PC, smartphones, tablets y laptops— y manejo tareas de mantenimiento y soporte. En mis tiempos libres escribo poesía libre y exploro proyectos personales de diseño.",
+	"color": "Azul o naranja",
+	"libro": ["The Hunger Games"],
+	"musica": ["Gospel", "rap", "rock alternativo", "Future Bass"],
+	"video_juego": ["Super Mario 64"],
+	"lenguajes": ["C/C++", "Java", "Python", "PHP"],
+	"email":"dannygonzalez.exe@gmail.com",
+	"ci": "29900089",
+	"genero":"masculino",
+	"fecha_nacimiento":"10/09/2002",
+	"imagen": "29900089.jpg"
+}
