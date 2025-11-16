@@ -9,5 +9,6 @@ const perfil = {
 	"email":"escalante.raquelj@gmail.com",
 	"ci":"19371273",
 	"genero":"femenino",
-	"fecha_nacimiento":"16/08/1990"
+	"fecha_nacimiento":"16/08/1990",
+	"imagen": "../19371273/19371273.jpg"
 }

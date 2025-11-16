@@ -9,5 +9,6 @@ const perfil = {
 "email":"gabo1gara@gmail.com",
 "ci":"19379860",
 "genero":"Masculino",
-"fecha_nacimiento":"25/05/1989"
+"fecha_nacimiento":"25/05/1989",
+"imagen": "../19379860/19379860.jpg"
 }

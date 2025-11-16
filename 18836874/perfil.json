@@ -9,5 +9,6 @@ const perfil = {
     "email":"jorgega99@hotmail.com",
     "ci":"18836874",    
     "genero":"masculino",
-    "fecha_nacimiento":"24/04/1989"
+    "fecha_nacimiento":"24/04/1989",
+    "imagen": "../18836874/18836874.jpg"
 }

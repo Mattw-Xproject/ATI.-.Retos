@@ -9,5 +9,6 @@ const perfil = {
 	"email":"angelxob@hotmail.com",
 	"ci": "20117857",
 	"genero":"masculino",
-	"fecha_nacimiento":"28/05/1991"
+	"fecha_nacimiento":"28/05/1991",
+	"imagen": "../20117857/20117857.PNG"
 }

@@ -10,5 +10,5 @@ const perfil = {
 	"ci": "29900089",
 	"genero":"masculino",
 	"fecha_nacimiento":"10/09/2002",
-	"imagen": "29900089.jpg"
+	"imagen": "../29900089/29900089.jpg"
 }

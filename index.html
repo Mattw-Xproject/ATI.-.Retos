@@ -2,109 +2,39 @@
 <html lang="es-ES">
 <head>
     <meta charset="utf-8" />
-    <title>ATI[UCV] 2025-2</title>
+    <title>Cargando...</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type=image/x-icon href="29900089/favicon.ico">
-    <link rel="shortcut icon" href="29900089/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous" />
+    
+    <script src="conf/configES.json"></script>
+    <script src="datos/index.json"></script>
+
+    <script src="js/index.js" defer></script>
 </head>
 <body>
     <header>
         <nav aria-label="Main">
             <ul class="nav-list">
-                <li class="left">
-                    <div class="header-left">
-                        <h1>ATI<sub>[UCV]</sub> 2025-2</h1>
-                    </div>
-                </li>
-
-                <li class="center">
-                    <div class="header-center">
-                        <div class="greeting">Hola, Mateo González</div>
-                    </div>
-                </li>
-
-                <li class="right">
-                    <div class="header-right">
-                        <form class="search" role="search" action="#" method="get">
-                            <input name="q" type="search" placeholder="Buscar..." aria-label="Buscar" />
-                            <button class="search-button" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                </li>
+                <li class="left"><div class="header-left"><h1 id="header-title"></h1></div></li>
+                <li class="center"><div class="header-center"><div class="greeting" id="greeting-text"></div></div></li>
+                <li class="right"><div class="header-right">
+                    <form class="search" role="search" action="#" method="get">
+                        <input id="search-input" name="q" type="search" placeholder="" aria-label="Buscar" />
+                        <button class="search-button" aria-label="Buscar"><i class="fas fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div></li>
             </ul>
         </nav>
     </header>
-
     <main>
         <section class="cards-section">
-            <ul class="cards-grid">
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img one"></div></div>
-                    <div class="card-content"><h2 class="card-title">Mateo Daniel González</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img two"></div></div>
-                    <div class="card-content"><h2 class="card-title">Teresa de la Parra</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img three"></div></div>
-                    <div class="card-content"><h2 class="card-title">Maria Antonieta</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img four"></div></div>
-                    <div class="card-content"><h2 class="card-title">Susana Perez</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img five"></div></div>
-                    <div class="card-content"><h2 class="card-title">Mario Básquez</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img six"></div></div>
-                    <div class="card-content"><h2 class="card-title">Carlos Tadeo</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img seven"></div></div>
-                    <div class="card-content"><h2 class="card-title">Alex Fido</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img eight"></div></div>
-                    <div class="card-content"><h2 class="card-title">Priscila López</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img nine"></div></div>
-                    <div class="card-content"><h2 class="card-title">Caterine Villegas</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img ten"></div></div>
-                    <div class="card-content"><h2 class="card-title">Patty Ferreira</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img eleven"></div></div>
-                    <div class="card-content"><h2 class="card-title">Cedric Lamar</h2></div>
-                </li>
-
-                <li class="card-wrap">
-                    <div class="card-header"><div class="card-img twelve"></div></div>
-                    <div class="card-content"><h2 class="card-title">Chencho Corleone</h2></div>
-                </li>
-            </ul>
+            <ul id="cards-grid" class="cards-grid"></ul>
         </section>
     </main>
-
     <footer>
-        <div>Copyright © 2025 Escuela de computación - ATI. Todos los derechos reservados.</div>
+        <div id="footer-text"></div>
     </footer>
 </body>
 </html>

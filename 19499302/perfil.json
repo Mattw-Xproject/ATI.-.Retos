@@ -9,6 +9,7 @@ const perfil = {
 	"ci":"19499302",
 	"genero":"femenino",
 	"fecha_nacimiento":"28/11/1990",
-	"email":"kathymcolina@gmail.com"
+	"email":"kathymcolina@gmail.com",
+	"imagen": "../19499302/19499302.jpg"
 }
 

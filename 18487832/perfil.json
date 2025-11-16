@@ -9,5 +9,6 @@ const perfil = {
 	"email":"hectorjosepalomino@gmail.com",
 	"ci":"18487832",
 	"genero": "masculino",
-	"fecha_nacimiento":"28/04/1990"
+	"fecha_nacimiento":"28/04/1990",
+	"imagen": "../18487832/18487832.jpg"
 }

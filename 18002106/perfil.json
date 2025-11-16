@@ -9,5 +9,6 @@ const perfil = {
 	"email":"abelardo.moreno@gmail.com",
 	"ci":"18002106",
 	"genero":"masculino",
-	"fecha_nacimiento":"19/12/1988"
+	"fecha_nacimiento":"19/12/1988",
+	"imagen": "../18002106/18002106.jpg"
 }

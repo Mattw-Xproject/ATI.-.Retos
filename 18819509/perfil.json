@@ -10,5 +10,6 @@ const perfil = {
 	"email": "dguaima@gmail.com",
 	"ci": "18819509",
 	"genero": "Masculino",
-	"fecha_nacimiento": "31/03/1990"
+	"fecha_nacimiento": "31/03/1990",
+	"imagen": "../18819509/18819509.jpg"
 }

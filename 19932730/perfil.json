@@ -9,5 +9,6 @@ const perfil = {
 	"email":"yesenia@gmail.com",
 	"ci": "9932730",
     "genero":"femenino", 
-    "fecha_nacimiento":"13/09/1990"
+    "fecha_nacimiento":"13/09/1990",
+	"imagen": "../19932730/19932730.jpg"
 }

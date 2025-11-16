@@ -9,5 +9,7 @@ const perfil = {
 	"email":"FG.SOS.STORE@gmail.com",
 	"ci":"18938455",
 	"genero":"masculino",
-	"fecha_nacimiento":"26/07/1989"
+	"fecha_nacimiento":"26/07/1989",
+
+	"imagen": "../18938455/18938455.jpg"
 }

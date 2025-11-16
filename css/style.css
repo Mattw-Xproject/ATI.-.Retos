@@ -3,18 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 :root{
     --color-text: #616161;
-    --card1-img: url('../29900089/29900089Grande.jpg');
-    --card2-img: url('../dummy1/dummy.jpg');
-    --card3-img: url('../dummy2/dummy.jpg');
-    --card4-img: url('../dummy3/dummy.jpg');
-    --card5-img: url('../dummy4/dummy.jpg');
-    --card6-img: url('../dummy5/dummy.jpg');
-    --card7-img: url('../dummy6/dummy.jpg');
-    --card8-img: url('../dummy1/dummy.jpg');
-    --card9-img: url('../dummy2/dummy.jpg');
-    --card10-img: url('../dummy3/dummy.jpg');
-    --card11-img: url('../dummy4/dummy.jpg');
-    --card12-img: url('../dummy5/dummy.jpg');
+    /* NUEVO: Variables para la imagen de perfil dinámica */
+    --profile-img-pequena: url('');
+    --profile-img-grande: url('');
 }
 /* Establecemos 16px como base para desktop (1rem = 16px) */
 /* En los media queries para móvil, aumentaremos el width */
@@ -110,6 +101,20 @@ footer{
     justify-items: center; /* Centramos las tarjetas */
 }
 
+/* Corrección para que el enlace de la tarjeta ocupe todo el espacio */
+.card-wrap {
+    padding: 0; /* Aseguramos que el enlace llene toda la tarjeta */
+}
+
+.card-wrap > a {
+    text-decoration: none;  /* 1. ELIMINA EL SUBRAYADO */
+    color: inherit;         /* Hereda el color (blanco) del .card-wrap */
+    display: flex;          /* 2. Ocupa el espacio como un bloque flex */
+    flex-direction: column; /* 3. Apila el .card-header y .card-content */
+    width: 100%;
+    height: 100%;
+}
+
 .card-wrap{
     cursor:pointer;
     transition: transform .18s ease;
@@ -117,6 +122,30 @@ footer{
     height: 220px;
 }
 
+/* Estilo para marcar las tarjetas de estudiantes visitados
+*/
+.card-wrap > a:visited .card-content {
+  /* Cambia el fondo de la barra de título a violeta */
+  background: #7a3a9b; /* Un tono de violeta */
+  border-top: 1px solid #f0f0f0;
+}
+
+.card-wrap > a:visited .card-title {
+  /* Asegura que el texto siga siendo legible */
+  color: #ffffff;
+}
+
+/* Opcional: un efecto más sutil en el hover de una tarjeta ya visitada */
+.card-wrap > a:visited:hover .card-content {
+   background: #5e2d79; /* Un violeta más oscuro al pasar el ratón */
+}
+.card-wrap > a:visited:hover .card-header{
+    background: #5e2d79;
+}
+
+.card-wrap > a:visited:hover .card-title{
+    color: plum;
+}
 @media (max-width:400px){
     .card-wrap{
     width: 170px;
@@ -278,7 +307,8 @@ footer{
         background-position: center;
         background-repeat: no-repeat;
         /* Por defecto (móvil) usamos la imagen pequeña */
-        background-image: url('../29900089/29900089Pequena.jpg'); 
+        /* MODIFICADO: Usa la variable CSS en lugar de una ruta fija */
+        background-image: var(--profile-img-pequena);
     }
     /* La regla .left-container-card img ya no es necesaria */
     .right-container-card{
@@ -491,7 +521,8 @@ footer{
     }
 
     .left-container-card {
-        background-image: url('../29900089/29900089Grande.jpg');
+        /* MODIFICADO: Usa la variable CSS en lugar de una ruta fija */
+        background-image: var(--profile-img-grande);
         
         /*Usamos 'flex' en lugar de 'width'.*/
         flex: 0 0 35%; 
@@ -551,8 +582,9 @@ footer{
     }
 
     .left-container-card {
-        background-image: url('../29900089/29900089Grande.jpg');
-        
+        /* MODIFICADO: Usa la variable CSS en lugar de una ruta fija */
+        background-image: var(--profile-img-grande);
+
         /*Usamos 'flex' en lugar de 'width'.*/
         flex: 0 0 30%; 
         
