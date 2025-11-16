@@ -1,4 +1,5 @@
 /* Lógica principal del sitio web js/index.js
+  Espera a que todo el HTML esté cargado (gracias a 'defer') y luego decide qué lógica ejecutar.
  */
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -15,11 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (gridContainer) {
         // EN INDEX.HTML
+        
+        // Validar que la lista 'perfiles' (de datos/index.json) exista
+        if (typeof perfiles === 'undefined') {
+             console.error('Error: El archivo datos/index.json no se cargó.');
+             return;
+        }
         // Ejecutar la lógica del Index
         cargarLogicaIndex();
 
     } else if (perfilContainer) {
-        // EN PERFIL.HTML
+        // --- ESTAMOS EN PERFIL.HTML ---
         
         // Ejecutar la lógica del Perfil
         cargarLogicaPerfil();
@@ -41,6 +48,22 @@ function cargarLogicaIndex() {
             const listItem = document.createElement('li');
             listItem.className = 'card-wrap';
 
+            // 2. Crear el <a> (el enlace)
+            const enlace = document.createElement('a');
+            enlace.href = `perfil.html?ci=${estudiante.ci}`;
+            
+            // 3. Poner el contenido DENTRO del enlace <a>
+            enlace.innerHTML = `
+                <div class="card-header">
+                    <div class="card-img" style="background-image: url('${estudiante.imagen}')"></div>
+                </div>
+                <div class="card-content">
+                    <h2 class="card-title">${estudiante.nombre}</h2>
+                </div>
+            `;
+            
+            // 4. Estructura correcta: <ul> -> <li> -> <a>
+            listItem.appendChild(enlace);
             gridContainer.appendChild(listItem);
         });
 
