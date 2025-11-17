@@ -79,24 +79,32 @@ function cargarLogicaIndex() {
  */
 function cargarLogicaPerfil() {
     try {
+        // 1. Obtener la CI del estudiante desde el parámetro en la URL
+        const params = new URLSearchParams(window.location.search);
+        const ci = params.get('ci');
 
-        // EL TRUCO: Inyectar dinámicamente el script del perfil
+        if (!ci) {
+            document.body.innerHTML = '<h1>Error: No se especificó una Cédula (CI) en la URL.</h1>';
+            return;
+        }
+
+        // 2. EL TRUCO: Inyectar dinámicamente el script del perfil
         const scriptPerfil = document.createElement('script');
         // El navegador cargará este archivo como un script
-        scriptPerfil.src = `29900089/perfil.json`; 
+        scriptPerfil.src = `${ci}/perfil.json`; 
         
-        
+        // 3. Cuando el script cargue, creará la variable 'perfil'.
         // Toda la lógica de rellenado DEBE ir dentro del 'onload'.
         scriptPerfil.onload = () => {
             
             // Verificamos que el script haya creado la variable 'perfil'
             if (typeof perfil === 'undefined') {
-                console.error(`Error: El archivo 29900089/perfil.json no se cargó o no define 'const perfil'.`);
-                document.body.innerHTML = `<h1>Error: No se pudo cargar el perfil 29900089.</h1>`;
+                console.error(`Error: El archivo ${ci}/perfil.json no se cargó o no define 'const perfil'.`);
+                document.body.innerHTML = `<h1>Error: No se pudo cargar el perfil ${ci}.</h1>`;
                 return;
             }
 
-            // Rellenar el perfil (ahora 'perfil' existe)
+            // 4. Rellenar el perfil (ahora 'perfil' existe)
             
             // Título de la página y Nombre H1
             document.title = perfil.nombre;
