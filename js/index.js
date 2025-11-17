@@ -3,34 +3,60 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. Validar que la configuración global exista
-    if (typeof config === 'undefined') {
-        console.error('Error: El archivo configES.json no se cargó.');
-        document.body.innerHTML = '<h1>Error fatal: No se pudo cargar la configuración.</h1>';
-        return;
-    }
-    
-    // 2. Decidir en qué página estamos
-    const gridContainer = document.getElementById('cards-grid');
-    const perfilContainer = document.getElementById('perfil-container');
+    // 1. LEER EL IDIOMA DE LA URL
+    const params = new URLSearchParams(window.location.search);
+    // Busca "?lang=XX". Si no, usa 'ES' por defecto.
+    const lang = (params.get('lang') || 'ES').toUpperCase();
 
-    if (gridContainer) {
-        // EN INDEX.HTML
+    // 2. CARGAR DINÁMICAMENTE EL ARCHIVO DE IDIOMA
+    const configScript = document.createElement('script');
+    configScript.src = `conf/config${lang}.json`; // Ej: conf/configEN.json
+
+    // 3. TODA LA LÓGICA DEPENDE DE QUE EL IDIOMA SE CARGUE
+    configScript.onload = () => {
         
-        // Validar que la lista 'perfiles' (de datos/index.json) exista
-        if (typeof perfiles === 'undefined') {
-             console.error('Error: El archivo datos/index.json no se cargó.');
-             return;
+        // 4. Validar que la variable 'config' exista
+        if (typeof config === 'undefined') {
+            console.error(`Error: El archivo ${configScript.src} no se cargó o no define 'const config'.`);
+            document.body.innerHTML = `<h1 id="error">Error 400/404: No se pudo cargar el idioma ${lang}.</h1>`;
+            return;
         }
-        // Ejecutar la lógica del Index
-        cargarLogicaIndex();
 
-    } else if (perfilContainer) {
-        // --- ESTAMOS EN PERFIL.HTML ---
-        
-        // Ejecutar la lógica del Perfil
-        cargarLogicaPerfil();
-    }
+        // 5. DECIDIR EN QUÉ PÁGINA ESTAMOS (como antes)
+        const gridContainer = document.getElementById('cards-grid');
+        const perfilContainer = document.getElementById('perfil-container');
+
+        if (gridContainer) {
+            // --- ESTAMOS EN INDEX.HTML ---
+            
+            // Validar que 'perfiles' (de datos/index.json) exista
+            if (typeof perfiles === 'undefined') {
+                 console.error('Error: El archivo datos/index.json no se cargó.');
+                 return;
+            }
+            cargarLogicaIndex(); // 'config' y 'perfiles' están listos
+
+        } else if (perfilContainer) {
+            // --- ESTAMOS EN PERFIL.HTML ---
+            
+            cargarLogicaPerfil(); // 'config' está listo
+        }
+    };
+
+    // 6. Manejar error si el archivo de idioma no existe
+    configScript.onerror = () => {
+        console.error(`Error: No se encontró el archivo ${configScript.src}.`);
+        // Si falla, intenta recargar con 'ES' (español por defecto)
+        if (lang !== 'ES') {
+            params.set('lang', 'ES');
+            window.location.search = params.toString();
+        } else {
+            document.body.innerHTML = '<h1 id="error">Error fatal: No se pudo cargar el archivo de idioma base.</h1>';
+        }
+    };
+
+    // 7. Añadir el script de idioma al <head> para iniciar la carga
+    document.head.appendChild(configScript);
 });
 
 // js/index.js (La función cargarLogicaIndex actualizada)
@@ -50,7 +76,7 @@ function cargarLogicaIndex() {
 
             // 2. Crear el <a> (el enlace)
             const enlace = document.createElement('a');
-            enlace.href = `perfil.html?ci=${estudiante.ci}`;
+            enlace.href = `perfil.html?ci=${estudiante.ci}&lang=${(new URLSearchParams(window.location.search)).get('lang') || 'ES'}`;
             
             // 3. Poner el contenido DENTRO del enlace <a>
             enlace.innerHTML = `
@@ -84,7 +110,7 @@ function cargarLogicaPerfil() {
         const ci = params.get('ci');
 
         if (!ci) {
-            document.body.innerHTML = '<h1>Error: No se especificó una Cédula (CI) en la URL.</h1>';
+            document.body.innerHTML = '<h1 id="error">Error 400/404: No se especificó una Cédula (CI) en la URL.</h1>';
             return;
         }
 
@@ -100,7 +126,7 @@ function cargarLogicaPerfil() {
             // Verificamos que el script haya creado la variable 'perfil'
             if (typeof perfil === 'undefined') {
                 console.error(`Error: El archivo ${ci}/perfil.json no se cargó o no define 'const perfil'.`);
-                document.body.innerHTML = `<h1>Error: No se pudo cargar el perfil ${ci}.</h1>`;
+                document.body.innerHTML = `<h1 id="error">Error 400/404: No se pudo cargar el perfil ${ci}.</h1>`;
                 return;
             }
 
@@ -144,7 +170,7 @@ function cargarLogicaPerfil() {
         // En caso de que el archivo no exista (ej. 404)
         scriptPerfil.onerror = () => {
             console.error(`Error: No se encontró el archivo ${ci}/perfil.json.`);
-            document.body.innerHTML = `<h1>Error: No se encontró el perfil ${ci}.</h1>`;
+            document.body.innerHTML = `<h1 id="error">Error 400/404: No se encontró el perfil ${ci}.</h1>`;
         };
 
         // 6. Añadir el script al <head> para iniciar la carga
