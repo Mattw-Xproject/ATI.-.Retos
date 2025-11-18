@@ -28,6 +28,21 @@ body{
     color:white;
     text-align:center;
     margin-top:40vh;
+    background: rgba(0, 0, 0, 0.2); 
+}
+
+/* Estilo para el mensaje de "No hay resultados" */
+.search-no-results {
+    color: #ffffff; /* Color de texto blanco */
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: 8px;
+    margin: 20px 0;
+}
+.search-no-results strong {
+    color: #ffb3b3; /* Resalta el término de búsqueda */
 }
 
 header{

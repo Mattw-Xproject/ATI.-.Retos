@@ -61,24 +61,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // js/index.js (La función cargarLogicaIndex actualizada)
 
+/**
+ * Lógica para INDEX.HTML
+ * Configura el Header, Footer, la lista inicial y el FILTRO DE BÚSQUEDA.
+ */
 function cargarLogicaIndex() {
     try {
-        const perfilUsuario = perfiles[0];
-        rellenarHeaderFooter(config, perfilUsuario);
+        // 1. Rellenar Header/Footer (usa 'config' y 'perfiles' globales)
+        rellenarHeaderFooter(config, perfiles[0]); 
 
-        const gridContainer = document.getElementById('cards-grid');
-        gridContainer.innerHTML = ''; 
+        // 2. Renderizar la lista completa por primera vez
+        renderizarPerfiles(perfiles);
 
-        perfiles.forEach(estudiante => {
-            // 1. Crear el <li> (la tarjeta)
+        // 3. Configurar el escuchador de eventos para la búsqueda
+        const searchInput = document.getElementById('search-input');
+        
+        searchInput.addEventListener('input', (e) => {
+            // Obtener el texto de búsqueda (limpio y en minúsculas)
+            const query = e.target.value.toLowerCase().trim();
+
+            // Filtrar la lista global de perfiles
+            const perfilesFiltrados = perfiles.filter(estudiante => 
+                estudiante.nombre.toLowerCase().includes(query)
+            );
+
+            // Volver a renderizar la lista solo con los perfiles filtrados
+            renderizarPerfiles(perfilesFiltrados, query);
+        });
+
+    } catch (error) {
+        console.error('Error al cargar la página de inicio:', error);
+    }
+}
+
+/**
+ * NUEVA FUNCIÓN: Renderizar Perfiles
+ * Dibuja las tarjetas en el index.html o muestra el mensaje de "No encontrado".
+ */
+function renderizarPerfiles(listaPerfiles, query = "") {
+    const gridContainer = document.getElementById('cards-grid');
+    const messageContainer = document.getElementById('search-results-message');
+    const lang = (new URLSearchParams(window.location.search)).get('lang') || 'ES';
+
+    // Limpiar el estado anterior
+    gridContainer.innerHTML = '';
+    messageContainer.innerHTML = '';
+
+    // Si hay resultados, dibujarlos
+    if (listaPerfiles.length > 0) {
+        listaPerfiles.forEach(estudiante => {
             const listItem = document.createElement('li');
             listItem.className = 'card-wrap';
-
-            // 2. Crear el <a> (el enlace)
             const enlace = document.createElement('a');
-            enlace.href = `perfil.html?ci=${estudiante.ci}&lang=${(new URLSearchParams(window.location.search)).get('lang') || 'ES'}`;
+            enlace.href = `perfil.html?ci=${estudiante.ci}&lang=${lang}`;
             
-            // 3. Poner el contenido DENTRO del enlace <a>
             enlace.innerHTML = `
                 <div class="card-header">
                     <div class="card-img" style="background-image: url('${estudiante.imagen}')"></div>
@@ -88,14 +124,20 @@ function cargarLogicaIndex() {
                 </div>
             `;
             
-            // 4. Estructura correcta: <ul> -> <li> -> <a>
             listItem.appendChild(enlace);
             gridContainer.appendChild(listItem);
         });
-
-    } catch (error) {
-        console.error('Error al cargar la página de inicio:', error);
+    
+    // Si NO hay resultados Y el usuario escribió algo
+    } else if (query) {
+        // Usar la plantilla de texto del archivo de idioma
+        const mensajePlantilla = config.searchNotFound; // "No hay alumnos...: [query]"
+        // Reemplazar [query] con el texto real (en negrita)
+        const mensaje = mensajePlantilla.replace('[query]', `<strong>${query}</strong>`);
+        
+        messageContainer.innerHTML = `<p class="search-no-results">${mensaje}</p>`;
     }
+    // Si no hay resultados Y no hay query (lista vacía), no muestra nada.
 }
 
 /**
