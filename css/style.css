@@ -103,7 +103,7 @@ footer{
     background:#99b4dd;
     color:#fff;
     display:flex;
-    justify-content:space-between;
+    justify-content:center;
     box-sizing:border-box;
 }
 
@@ -172,29 +172,41 @@ footer{
     }
 }
 
-.card-wrap:hover{ transform: translateY(-6px) scale(1.01); }
-.card-wrap:hover .card-title{
-    transform: translateY(-4px) scale(1.02) rotate(-1deg);
-    color:#0b3653;
+/* =========================================
+   EFECTO DE HOVER: SINCRONIZADO (MISMO SENTIDO)
+   Todo rota hacia la derecha (Valores Positivos)
+   ========================================= */
+
+/* 1. El Contenedor (.card-wrap) 
+   Rota 4 grados a la derecha. */
+.card-wrap:hover {
+    transform: translateY(-6px) scale(1.02) rotate(4deg); 
+    filter: saturate(1.05);
+    z-index: 10; 
 }
 
-.card-wrap:hover .card-header{
+/* 2. El Título (.card-title)
+   Se mueve en el MISMO SENTIDO.
+   Suma 2deg a los 4deg del padre = 6deg totales a la derecha. */
+.card-wrap:hover .card-title {
+    transform: translateY(-4px) scale(1.02) rotate(1deg);
+    color: #0b3653;
+}
+
+/* 3. El Fondo del Header y Content */
+.card-wrap:hover .card-header,
+.card-wrap:hover .card-content {
     background: #99c5dd;
 }
-.card-wrap:hover .card-content{
-    background: #99c5dd;
+
+/* 4. La Imagen (.card-img)
+   CORRECCIÓN: Ahora usamos un valor POSITIVO (2deg).
+   Esto asegura que rote en el MISMO SENTIDO que la tarjeta.
+   Total visual: 4deg (padre) + 2deg (imagen) = 6deg a la derecha. */
+.card-wrap:hover .card-img {
+    transform: scale(1.08) rotate(1deg);
+    filter: saturate(1.05);
 }
-
-/* aplicar efecto sobre la imagen dentro de la tarjeta al hover del card */
-    .card-wrap:hover .card-img{
-        transform: scale(1.08) rotate(3deg);
-        filter: saturate(1.05);
-    }
-
-    .card-wrap:hover {
-        transform: scale(1.08) rotate(3deg);
-        filter: saturate(1.05);
-    }
 
 @media (max-width:900px){
     .cards-grid{ grid-template-columns: repeat(2, 1fr); }
