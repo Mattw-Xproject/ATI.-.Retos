@@ -48,7 +48,7 @@ body{
 header{
     width:100%;
     max-width:1200px;
-    background:#99b4dd;
+    background:#6b81c1;
     color:#fff;
     padding:20px 32px;
     box-sizing:border-box;
@@ -100,7 +100,7 @@ footer{
     max-width:1200px;
     width:100%;
     padding:30px 32px;
-    background:#99b4dd;
+    background:#6b81c1;
     color:#fff;
     display:flex;
     justify-content:center;
@@ -196,7 +196,7 @@ footer{
 /* 3. El Fondo del Header y Content */
 .card-wrap:hover .card-header,
 .card-wrap:hover .card-content {
-    background: #99c5dd;
+    background: #6b81c1;
 }
 
 /* 4. La Imagen (.card-img)
