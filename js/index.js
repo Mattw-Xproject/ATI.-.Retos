@@ -5,9 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 1. LEER EL IDIOMA DE LA URL
     const params = new URLSearchParams(window.location.search);
+    
     // Busca "?lang=XX". Si no, usa 'ES' por defecto.
-    const lang = (params.get('lang') || 'ES').toUpperCase();
+    if(!params.has('lang')){
+        params.set('lang','ES');
+        window.location.search=params.toString();
+    }
+    const lang = (params.get('lang')).toUpperCase();
+    
 
+    
     // 2. CARGAR DINÁMICAMENTE EL ARCHIVO DE IDIOMA
     const configScript = document.createElement('script');
     configScript.src = `conf/config${lang}.json`; // Ej: conf/configEN.json
@@ -75,10 +82,43 @@ function cargarLogicaIndex() {
 
         // 3. Configurar el escuchador de eventos para la búsqueda
         const searchInput = document.getElementById('search-input');
+
+        //                 ANÁLISIS DE 'THIS' (3 CASOS)
+
+        // CASO 1: Contexto de Método de Objeto
+        // 'this' hace referencia al objeto 'auditoriaBusqueda'.
+        const auditoriaBusqueda = {
+            contador: 0,
+            ultimoTermino: '',
+            registrar: function(termino) {
+                // Usamos 'this' para leer propiedades de ESTE objeto
+                this.contador++;
+                this.ultimoTermino = termino;
+                console.log(`%c[CASO 1 - Objeto] this.contador = ${this.contador}`, 'color: cyan');
+                console.log("Valor de 'this':", this); 
+            }
+        };
+        
+        // --- CASO 3: Contexto de Event Handler (DOM) ---
+        // IMPORTANTE: Usamos 'function()' y NO '() => {}'
+        // 'this' hace referencia al elemento HTML que recibe el evento (<input>).
+        searchInput.addEventListener('focus', function() {
+            console.log(`%c[CASO 3 - Evento DOM] Elemento enfocado`, 'color: lime');
+            
+            // Usamos 'this' para acceder a atributos del elemento HTML
+            console.log("Valor de 'this' (debería ser el <input>):", this);
+            console.log("Atributo Placeholder desde 'this':", this.placeholder);
+        });
+
         
         searchInput.addEventListener('input', (e) => {
             // Obtener el texto de búsqueda (limpio y en minúsculas)
             const query = e.target.value.toLowerCase().trim();
+
+            // EJECUTAMOS NUESTRO CASO DE ESTUDIO
+            // Al llamar a auditoriaBusqueda.registrar(), 'this' dentro de esa función
+            // será el objeto auditoriaBusqueda.
+            auditoriaBusqueda.registrar(query);
 
             // Filtrar la lista global de perfiles
             const perfilesFiltrados = perfiles.filter(estudiante => 
@@ -123,7 +163,6 @@ function renderizarPerfiles(listaPerfiles, query = "") {
                     <h2 class="card-title">${estudiante.nombre}</h2>
                 </div>
             `;
-            
             listItem.appendChild(enlace);
             gridContainer.appendChild(listItem);
         });
@@ -135,6 +174,16 @@ function renderizarPerfiles(listaPerfiles, query = "") {
         // Reemplazar [query] con el texto real (en negrita)
         const mensaje = mensajePlantilla.replace('[query]', `<strong>${query}</strong>`);
         
+        // CASO 2: EJEMPLO Contexto DE 'THIS' EN FUNCIÓN NORMAL
+        function verificarContextoGlobal() {
+            // Variable local (no afecta a this, pero es parte del scope)
+            let mensaje = "Soy una función normal";
+
+            console.log(`%c[CASO 2 - Función Normal] Ejecutando: ${mensaje}`, 'color: yellow');
+            console.log("Valor de 'this' (debería ser Window):", this);
+        }
+        verificarContextoGlobal();
+
         messageContainer.innerHTML = `<p class="search-no-results">${mensaje}</p>`;
     }
     // Si no hay resultados Y no hay query (lista vacía), no muestra nada.

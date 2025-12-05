@@ -138,8 +138,8 @@ footer{
 .card-wrap{
     cursor:pointer;
     transition: transform .18s ease;
-    width: 180px;
-    height: 220px;
+    width: 200px;
+    height: 180px;
 }
 
 /* Estilo para marcar las tarjetas de estudiantes visitados
@@ -180,6 +180,7 @@ footer{
 /* 1. El Contenedor (.card-wrap) 
    Rota 4 grados a la derecha. */
 .card-wrap:hover {
+    will-change: transform;
     transform: translateY(-6px) scale(1.02) rotate(4deg); 
     filter: saturate(1.05);
     z-index: 10; 
@@ -189,8 +190,9 @@ footer{
    Se mueve en el MISMO SENTIDO.
    Suma 2deg a los 4deg del padre = 6deg totales a la derecha. */
 .card-wrap:hover .card-title {
+    will-change: transform;
     transform: translateY(-4px) scale(1.02) rotate(1deg);
-    color: #0b3653;
+    color: #e4f4fd;
 }
 
 /* 3. El Fondo del Header y Content */
@@ -204,6 +206,7 @@ footer{
    Esto asegura que rote en el MISMO SENTIDO que la tarjeta.
    Total visual: 4deg (padre) + 2deg (imagen) = 6deg a la derecha. */
 .card-wrap:hover .card-img {
+    will-change: transform;
     transform: scale(1.08) rotate(1deg);
     filter: saturate(1.05);
 }
