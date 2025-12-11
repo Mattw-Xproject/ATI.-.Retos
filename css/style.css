@@ -190,7 +190,6 @@ footer{
    Se mueve en el MISMO SENTIDO.
    Suma 2deg a los 4deg del padre = 6deg totales a la derecha. */
 .card-wrap:hover .card-title {
-    will-change: transform;
     transform: translateY(-4px) scale(1.02) rotate(1deg);
     color: #e4f4fd;
 }
