@@ -294,3 +294,50 @@ function rellenarHeaderFooter(config, perfilUsuario) {
     // 5. Texto del Footer
     document.getElementById('footer-text').textContent = config.copyRight;
 }
+
+
+function loadProfile(ci) {
+    // Petición AJAX al backend Python
+    fetch(`index.py?action=get_profile&ci=${ci}`)
+        .then(response => response.json())
+        .then(data => {
+            renderProfile(data);
+        })
+        .catch(error => console.error('Error cargando perfil:', error));
+}
+
+function renderProfile(data) {
+    const perfil = data.perfil;
+    const textos = data.textos; // Etiquetas traducidas del config
+
+    const grid = document.getElementById('cards-grid');
+    const container = document.getElementById('perfil-container');
+    const content = document.getElementById('perfil-content');
+
+    // Ocultar Grid, Mostrar Perfil
+    grid.style.display = 'none';
+    container.style.display = 'block';
+
+    // Generar HTML Dinámico usando los datos y las etiquetas traducidas
+    // Nota: Ajustamos las rutas de imagen
+    content.innerHTML = `
+        <div class="perfil-header">
+            <img src="${perfil.imagen}" alt="${perfil.nombre}" class="profile-pic-large">
+            <h1>${perfil.nombre}</h1>
+            <p>${perfil.descripcion}</p>
+        </div>
+        <div class="perfil-details">
+            <p><strong>${textos.color}:</strong> ${perfil.color}</p>
+            <p><strong>${textos.libro}:</strong> ${Array.isArray(perfil.libro) ? perfil.libro.join(', ') : perfil.libro}</p>
+            <p><strong>${textos.musica}:</strong> ${Array.isArray(perfil.musica) ? perfil.musica.join(', ') : perfil.musica}</p>
+            <p><strong>${textos.video_juego}:</strong> ${Array.isArray(perfil.video_juego) ? perfil.video_juego.join(', ') : perfil.video_juego}</p>
+            <p><strong>${textos.lenguajes}:</strong> ${Array.isArray(perfil.lenguajes) ? perfil.lenguajes.join(', ') : perfil.lenguajes}</p>
+            <p><strong>Email:</strong> <a href="mailto:${perfil.email}">${perfil.email}</a></p>
+        </div>
+    `;
+}
+
+function showGrid() {
+    document.getElementById('cards-grid').style.display = 'grid'; // O flex, según tu CSS
+    document.getElementById('perfil-container').style.display = 'none';
+}
